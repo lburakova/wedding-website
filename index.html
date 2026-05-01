@@ -31,9 +31,10 @@
         }
 
         header {
-            border-bottom: 1px solid var(--pz-border);
+            border-bottom: 1px solid var(--gold); 
             padding: 1rem 0;
-            background: white;
+            margin-bottom: 4rem;
+            background-color: var(--bg-color); 
             position: sticky;
             top: 0;
             z-index: 100;
@@ -49,20 +50,20 @@
         }
 
         .nav-brand {
-        font-size: 1.5rem; /* Slightly larger to make the outline clearer */
-        font-weight: 900;   /* Thick font weight is required for the outline effect to look good */
+        font-size: 1.5rem;
+        font-weight: 900; 
         text-decoration: none;
         letter-spacing: 0.05em;
         transition: all 0.3s ease;
         
-        /* The "Project Zero" Outline Effect */
-        color: transparent; /* Makes the center of the letters transparent */
-        -webkit-text-stroke: 1.5px var(--emerald); /* Creates the emerald outline */
+        color: transparent; 
+        -webkit-text-stroke: 1.5px var(--primary-emerald);
+        text-shadow: none; 
         }
     
         .nav-brand:hover {
-        color: var(--emerald); /* Fills the text with solid color on hover */
-        -webkit-text-stroke: 1.5px var(--emerald);
+        color: var(--primary-emerald); 
+        -webkit-text-stroke: 1.5px var(--primary-emerald);
         }
 
         .nav-links a {
