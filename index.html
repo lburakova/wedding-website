@@ -34,8 +34,7 @@
         }
 
         header {
-            border-bottom: 1px solid var(--highlight-gold);
-            padding: 1rem 0;
+            padding: 2rem 0;
             margin-bottom: 4rem;
             background-color: var(--bg-color);
             position: sticky;
@@ -44,20 +43,25 @@
         }
 
         .nav-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 1.5rem;
+            border-bottom: 2px solid var(--highlight-gold);
+            padding-bottom: 0.75rem;
         }
 
         .nav-brand {
             font-size: 1.5rem;
-            font-weight: 900;
+            color: var(--pz-text);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             text-decoration: none;
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
+            font-weight: 700;
 
             color: transparent;
             -webkit-text-stroke: 1.5px var(--primary-emerald);
@@ -137,14 +141,6 @@
 
         a:hover {
             text-decoration: underline;
-        }
-
-        /* --- RSVP --- */
-        .rsvp-container {
-            margin-top: 2rem;
-            border: 1px solid var(--pz-border);
-            border-radius: 4px;
-            overflow: hidden;
         }
 
         iframe {
@@ -239,6 +235,60 @@
                 grid-row: span 1;
             }
         }
+
+        .rsvp-container {
+            max-width: 600px;
+            margin: 2rem 0;
+            font-family: 'Roboto Mono', monospace;
+            /* Monospace gives that PZ tech feel */
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: 2px solid #000;
+            padding: 12px;
+            font-size: 1rem;
+            background: transparent;
+            border-radius: 0;
+            outline: none;
+            transition: background 0.2s ease;
+        }
+
+        .form-group input:focus {
+            background: #fff;
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        .button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .button:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
@@ -279,6 +329,42 @@
         <p> We recommend either the <a
                 href="https://www.hilton.com/en/hotels/dttnvhx-hampton-detroit-northville">Hampton Inn</a> or <a
                 href="https://www.saintjohnsresort.com/"> St John's Resort </a> </p>
+
+        <div class="rsvp-container">
+            <form id="custom-rsvp-form"
+                action="https://docs.google.com/forms/d/e/1-0ZAW5ipZrypTLxLC8lynxkoYAGo6_5T7MBlsPYm7DU/formResponse"
+                method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+
+                <div class="form-group">
+                    <label for="name">GUEST NAME 1</label>
+                    <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name2">GUEST NAME 2 (Optional)</label>
+                    <input type="text" name="entry.552987828" id="name2" placeholder="Enter partner's name">
+                </div>
+
+                <div class="form-group">
+                    <label for="attending">DINNER OPTION</label>
+                    <select name="entry.1940743591" id="attending" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Vegan">Vegan</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="button">SUBMIT RSVP</button>
+            </form>
+
+            <script type="text/javascript">var submitted = false;</script>
+
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            <div id="success-message" style="display:none;">
+                <h3>Thanks! Your RSVP has been received.</h3>
+            </div>
+        </div>
 
         <h2 id="rsvp">RSVP</h2>
         <p>Please let us know if you can make it by <strong>September 1st, 2026</strong>.</p>
