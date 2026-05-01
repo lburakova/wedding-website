@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Wedding</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary-emerald: #1B4D3E;   
-            --accent-burgundy: #800020; 
-            --highlight-gold: #D4AF37;      
+            --primary-emerald: #1B4D3E;
+            --accent-burgundy: #800020;
+            --highlight-gold: #D4AF37;
 
-            --bg-color: #FAF9F6;     
-            --header-bg: #F5F4F0;    
-            --text-main: #202124; 
-            --pz-border: #e0ddd5;    
-            --pz-text: #3c4043;       
-            --pz-heading: #202124;   
-            --pz-meta: #70757a;    
+            --bg-color: #FAF9F6;
+            --header-bg: #F5F4F0;
+            --text-main: #202124;
+            --pz-border: #e0ddd5;
+            --pz-text: #3c4043;
+            --pz-heading: #202124;
+            --pz-meta: #70757a;
         }
 
         body {
@@ -31,10 +34,10 @@
         }
 
         header {
-            border-bottom: 1px solid var(--gold); 
+            border-bottom: 1px solid var(--highlight-gold);
             padding: 1rem 0;
             margin-bottom: 4rem;
-            background-color: var(--bg-color); 
+            background-color: var(--bg-color);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -50,20 +53,20 @@
         }
 
         .nav-brand {
-        font-size: 1.5rem;
-        font-weight: 900; 
-        text-decoration: none;
-        letter-spacing: 0.05em;
-        transition: all 0.3s ease;
-        
-        color: transparent; 
-        -webkit-text-stroke: 1.5px var(--primary-emerald);
-        text-shadow: none; 
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--primary-emerald);
+            text-shadow: none;
         }
-    
+
         .nav-brand:hover {
-        color: var(--primary-emerald); 
-        -webkit-text-stroke: 1.5px var(--primary-emerald);
+            color: var(--primary-emerald);
+            -webkit-text-stroke: 1.5px var(--primary-emerald);
         }
 
         .nav-links a {
@@ -80,7 +83,7 @@
         }
 
         main {
-            max-width: 800px; 
+            max-width: 800px;
             margin: 0 auto;
             padding: 3rem 1.5rem 5rem 1.5rem;
         }
@@ -93,7 +96,7 @@
         }
 
         .post-meta span.location {
-            color: var(--accent-burgundy); 
+            color: var(--accent-burgundy);
         }
 
         h1 {
@@ -109,7 +112,7 @@
             color: var(--pz-heading);
             margin-top: 3.5rem;
             margin-bottom: 1rem;
-            border-bottom: 1px solid var(--pz-border); 
+            border-bottom: 1px solid var(--pz-border);
             padding-bottom: 0.5rem;
             font-weight: 500;
         }
@@ -121,7 +124,7 @@
 
         .accent-box {
             background-color: #F2F0E9;
-            border-left: 4px solid var(--highlight-gold); 
+            border-left: 4px solid var(--highlight-gold);
             padding: 1.25rem 1.5rem;
             margin: 2rem 0;
             font-size: 1rem;
@@ -146,18 +149,99 @@
 
         iframe {
             width: 100%;
-            height: 800px; 
+            height: 800px;
             border: none;
         }
 
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 300px;
+            grid-gap: 15px;
+            grid-auto-flow: dense;
+            margin-top: 2rem;
+        }
+
+        .photo-item {
+            border: 1px solid var(--gold);
+            background-color: rgba(212, 175, 55, 0.05);
+            /* Very light gold tint */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item::after {
+            content: "Photo Placeholder";
+            font-family: ui-monospace, monospace;
+            font-size: 0.8rem;
+            color: var(--burgundy);
+            opacity: 0.5;
+        }
+
+        .photo-item.tall {
+            grid-row: span 2;
+        }
+
+        .photo-item.wide {
+            grid-column: span 2;
+        }
+
+        .photo-item:hover {
+            border-color: var(--burgundy);
+            transform: scale(1.01);
+            z-index: 10;
+        }
+
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .nav-container { flex-direction: column; align-items: flex-start; }
-            .nav-links { margin-top: 10px; }
-            .nav-links a { margin-left: 0; margin-right: 1rem; }
+            .photo-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 250px;
+            }
+
+            .photo-item.wide,
+            .photo-item.tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                margin-top: 10px;
+            }
+
+            .nav-links a {
+                margin-left: 0;
+                margin-right: 1rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+                /* Single column on mobile */
+                grid-auto-rows: 250px;
+            }
+
+            .photo-item.wide,
+            .photo-item.tall {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -175,11 +259,12 @@
         <div class="post-meta">
             2026-SEP-26 • <span class="location">NORTHVILLE, MI</span>
         </div>
-        
+
         <h1>We are getting married.</h1>
-        
-        <p>Welcome to our wedding website. We are so excited to celebrate our special day with our favorite people. Please read below for details regarding our schedule, accommodations, and to submit your RSVP.</p>
-        
+
+        <p>Welcome to our wedding website. We are so excited to celebrate our special day with our favorite people.
+            Please read below for details regarding our schedule, accommodations, and to submit your RSVP.</p>
+
         <div class="accent-box">
             <strong>Dress Code:</strong> TODO
         </div>
@@ -187,18 +272,32 @@
         <h2 id="details">The Details</h2>
         <p><strong>Ceremony:</strong> 4:00 PM at [Venue Name].<br>
             <strong>Cocktail Hour:</strong> 4:30 PM <br>
-        <strong>Reception:</strong> 5:30 PM immediately following the ceremony in the main ballroom.</p>
+            <strong>Reception:</strong> 5:30 PM immediately following the ceremony in the main ballroom.
+        </p>
 
         <h2 id="travel">Travel & Accommodations</h2>
-        <p> We recommend either the <a href="https://www.hilton.com/en/hotels/dttnvhx-hampton-detroit-northville" >Hampton Inn</a> or <a href="https://www.saintjohnsresort.com/"> St John's Resort </a> </p>
+        <p> We recommend either the <a
+                href="https://www.hilton.com/en/hotels/dttnvhx-hampton-detroit-northville">Hampton Inn</a> or <a
+                href="https://www.saintjohnsresort.com/"> St John's Resort </a> </p>
 
         <h2 id="rsvp">RSVP</h2>
         <p>Please let us know if you can make it by <strong>September 1st, 2026</strong>.</p>
-        
+
         <div class="rsvp-container">
-            <iframe src="GOOGLE_FORM_LINK_TODO">Loading…</iframe>
+            <iframe src="https://forms.gle/qG8a12GQ73vnpnfU8">Loading…</iframe>
         </div>
+
+        <h2 id="gallery">Gallery</h2>
+        <section class="photo-grid">
+            <div class="photo-item"></div>
+            <div class="photo-item tall"></div>
+            <div class="photo-item"></div>
+            <div class="photo-item wide"></div>
+            <div class="photo-item"></div>
+            <div class="photo-item"></div>
+        </section>
     </main>
 
 </body>
+
 </html>
