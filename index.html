@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Wedding</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@400&display=swap"
         rel="stylesheet">
 
     <style>
@@ -17,10 +17,12 @@
             --dark-green: #013220;
             --soft-gold: #F9F1D7;
             --light-grey: #70757a;
+            --dark-grey: #333;
         }
 
         body,
         html {
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--cream);
             overflow-x: hidden !important;
             width: 100%;
@@ -90,6 +92,7 @@
             position: relative !important;
             padding-left: 15px !important;
         }
+
         .nav-links a {
             color: var(--dark-green) !important;
             font-weight: bold !important;
@@ -111,7 +114,7 @@
             }
         }
 
-       main {
+        main {
             max-width: 800px;
             margin: 0 auto;
             padding: 3rem 1.5rem 5rem 1.5rem;
@@ -129,20 +132,45 @@
         }
 
         h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 2.25rem;
             color: var(--burgundy);
             margin: 0 0 2rem 0;
             font-weight: 400;
             letter-spacing: -0.01em;
         }
+
         h2 {
-           font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
             color: var(--burgundy);
             margin-top: 3.5rem;
             margin-bottom: 1rem;
             border-bottom: 1px solid var(--pz-border);
             padding-bottom: 0.5rem;
             font-weight: 500;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--dark-grey);
+            margin: 0;
+            border-bottom: none;
+            width: auto;
+        }
+
+        p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75px;
+            line-height: 1.8;
+            color: var(--light-grey);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 0.02em;
         }
 
         .accent-box {
@@ -237,7 +265,7 @@
             }
         }
 
-         /* RSVP Section */
+        /* RSVP Section */
         .rsvp-container {
             max-width: 600px;
             margin: 2rem 0;
@@ -332,8 +360,8 @@
         <div class="nav-container">
             <a href="#" class="nav-brand">Nicola & Liza Get Married</a>
             <div class="nav-links">
-                <a href="#details">Details</a>
-                <a href="#travel">Travel</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#FAQ">FAQ</a>
                 <a href="#rsvp">RSVP</a>
             </div>
         </div>
@@ -349,12 +377,11 @@
         <p>Welcome to our wedding website. We are so excited to celebrate our special day with our favorite people.
             Please read below for details regarding our schedule, accommodations, and to submit your RSVP.</p>
 
-        <h2 id="details">The Details</h2>
+        <h2 id="schedule">Schedule</h2>
         <p><strong>Ceremony:</strong> 4:00 PM at [Venue Name].<br>
             <strong>Cocktail Hour:</strong> 4:30 PM <br>
             <strong>Reception:</strong> 5:30 PM immediately following the ceremony in the main ballroom.
         </p>
-        <div class="accent-box"><strong>Dress Code:</strong> TODO</div>
 
         <h2 id="travel">Travel & Accommodations</h2>
         <p> We recommend either the <a
@@ -382,11 +409,11 @@
                 <div class="form-group">
                     <label for="attending">DINNER OPTION</label>
                     <div class="custom-select-wrapper">
-                    <select name="entry.1940743591" id="attending" required>
-                        <option value="" disabled selected>Select an option</option>
-                        <option value="Chicken">Chicken</option>
-                        <option value="Fish">Fish</option>
-                        <option value="Vegan">Vegan</option>
+                        <select name="entry.1940743591" id="attending" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Fish">Fish</option>
+                            <option value="Vegan">Vegan</option>
                         </select>
                         <span>▼</span>
                     </div>
@@ -403,14 +430,29 @@
             </div>
         </div>
 
-        <h2 id="gallery">Gallery</h2>
+        <h2 id="FAQ"> FAQ </h2>
+        <h3> What is the dress code? </h3>
+        <p> TODO </p>
+        <h3> Are children allowed? </h3>
+        <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your understanding! </p>
+        <h3> Will there be parking available? </h3>
+        <p> Yes, there will be valet parking on site </p>
+
+        <h2 id=" gallery">Gallery</h2>
         <section class="photo-grid">
-            <div class="photo-item"></div>
-            <div class="photo-item tall"></div>
-            <div class="photo-item"></div>
-            <div class="photo-item wide"></div>
-            <div class="photo-item"></div>
-            <div class="photo-item"></div>
+            <div class="photo-item"><img src="images/asset1.jpg" /></div>
+            <div class="photo-item"><img src="images/asset2.jpg" /></div>
+            <div class="photo-item"><img src="images/asset3.jpg" /></div>
+            <div class="photo-item"><img src="images/asset4.jpg" /></div>
+            <div class="photo-item"><img src="images/asset5.jpg" /></div>
+            <div class="photo-item"><img src="images/asset6.jpg" /></div>
+            <div class="photo-item"><img src="images/asset7.jpg" /></div>
+            <div class="photo-item"><img src="images/asset8.jpg" /></div>
+            <div class="photo-item"><img src="images/asset9.jpg" /></div>
+            <div class="photo-item"><img src="images/asset10.jpg" /></div>
+            <div class="photo-item"><img src="images/asset11.jpg" /></div>
+            <div class="photo-item"><img src="images/asset12.jpg" /></div>
+            <div class="photo-item"><img src="images/asset13.jpg" /></div>
         </section>
     </main>
 
