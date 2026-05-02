@@ -138,6 +138,7 @@
             margin: 0 0 2rem 0;
             font-weight: 400;
             letter-spacing: -0.01em;
+            border-bottom: 1px solid var(--burgundy);
         }
 
         h2 {
@@ -146,7 +147,7 @@
             color: var(--burgundy);
             margin-top: 3.5rem;
             margin-bottom: 1rem;
-            border-bottom: 1px solid var(--pz-border);
+            border-bottom: 1px solid var(--burgundy);
             padding-bottom: 0.5rem;
             font-weight: 500;
         }
@@ -165,18 +166,45 @@
 
         p {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
+            font-size: 1.5rem;
             line-height: 1.8;
             color: var(--light-grey);
             margin-bottom: 1.5rem;
             letter-spacing: 0.02em;
+            text-align: left;
         }
 
         .photo-grid {
             display: grid !important;
+            grid-auto-rows: 100px !important;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
-            gap: 16px !important;
+            gap: 8px !important;
             width: 100% !important;
+            grid-auto-flow: dense !important;
+        }
+
+        .photo-grid .photo-item:nth-child(1),
+        .photo-grid .photo-item:nth-child(6),
+        .photo-grid .photo-item:nth-child(10),
+        .photo-grid .photo-item:nth-child(12),
+        .photo-grid .photo-item:nth-child(13) {
+            grid-row: span 3 !important;
+            /* Makes them tall */
+        }
+
+        .photo-grid .photo-item:nth-child(2) img {
+            object-position: top !important;
+        }
+
+
+        .photo-grid .photo-item:nth-child(7),
+        .photo-grid .photo-item:nth-child(11) {
+            grid-column: span 2 !important;
+            grid-row: span 2 !important;
+        }
+
+        .photo-grid .photo-item:nth-child(7) img {
+            object-position: bottom !important;
         }
 
         .photo-item {
