@@ -176,20 +176,40 @@
 
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: 200px;
             grid-auto-flow: dense;
-            max-width: 800px;
+            /* Crucial for packing images into gaps */
+            gap: 16px;
+            max-width: 1000px;
             margin: 40px auto;
         }
 
+        /* 2. Proportions */
         .photo-item {
-            width: 100% !important;
-            aspect-ratio: 1 / 1;
-            overflow: hidden !important;
             position: relative;
+            overflow: hidden;
         }
 
+        /* Feature Block (2x2) */
+        .photo-item.tall {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* Wide Rectangle (2x1) */
+        .photo-item.wide {
+            grid-column: span 2;
+            grid-row: span 1;
+        }
+
+        /* Standard Square (1x1) */
+        .photo-item.square {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        /* 3. Image Handling */
         .photo-item img {
             width: 100%;
             height: 100%;
@@ -197,21 +217,6 @@
             position: absolute;
             top: 0;
             left: 0;
-        }
-
-        .photo-item.tall {
-            grid-row: span 2;
-            grid-column: span 2;
-        }
-
-        .photo-item.wide {
-            grid-column: span 2;
-        }
-
-        .photo-item:hover {
-            border-color: var(--burgundy);
-            transform: scale(1.01);
-            z-index: 10;
         }
 
         @media (max-width: 600px) {
@@ -423,17 +428,19 @@
         <h2 id=" gallery">Gallery</h2>
         <section class="photo-grid">
             <div class="photo-item tall"><img src="images/asset1.jpg"></div>
-            <div class="photo-item"><img src="images/asset2.jpg"></div>
+            <div class="photo-item wide"><img src="images/asset2.jpg"></div>
             <div class="photo-item"><img src="images/asset3.jpg"></div>
             <div class="photo-item"><img src="images/asset5.jpg"></div>
-            <div class="photo-item wide"><img src="images/asset4.jpg"></div>
+
             <div class="photo-item"><img src="images/asset6.jpg"></div>
             <div class="photo-item wide"><img src="images/asset7.jpg"></div>
-            <div class="photo-item"><img src="images/asset9.jpg"></div>
+            <div class="photo-item"><img src="images/asset8.jpg"></div>
+
             <div class="photo-item tall"><img src="images/asset10.jpg"></div>
-            <div class="photo-item wide"><img src="images/asset8.jpg"></div>
             <div class="photo-item"><img src="images/asset13.jpg"></div>
-            <div class="photo-item"><img src="images/asset12.jpg"></div>
+            <div class="photo-item"><img src="images/asset9.jpg"></div>
+            <div class="photo-item wide"><img src="images/asset4.jpg"></div>
+
         </section>
     </main>
 
