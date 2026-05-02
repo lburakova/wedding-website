@@ -344,26 +344,36 @@
         }
     </style>
 </head>
- <script>
+<script>
+    js
     const rsvpForm = document.querySelector('#custom-rsvp-form');
 
-if (rsvpForm) {
-  rsvpForm.addEventListener('input', (e) => {
-    const value = e.target.value || '';
-    
-    const patterns = [
-      /<script/i,
-      /alert\(/i,
-      /onerror=/i,
-      /\{\s*position:\s*fixed/i
-    ];
-    
-    if (patterns.some(pattern => pattern.test(value))) {
-      window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', (e) => {
+            // Collect all inputs
+            const inputs = Array.from(rsvpForm.querySelectorAll('input, select, textarea'));
+
+            // Patterns to watch for
+            const patterns = [
+                /<script/i,
+                /alert\(/i,
+                /onerror=/i,
+                /javascript:/i
+            ];
+
+            // Check if ANY input contains malicious patterns
+            const isSuspicious = inputs.some(input =>
+                patterns.some(pattern => pattern.test(input.value))
+            );
+
+            if (isSuspicious) {
+                e.preventDefault(); // STOP the POST request
+                window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+            }
+        });
     }
-  });
-}
- </script>
+</script>
+
 <body>
 
     <header>
@@ -402,58 +412,58 @@ if (rsvpForm) {
         <p>Please let us know if you can make it by <strong>September 1st, 2026</strong>.</p>
 
         <div class="rsvp-container">
-    <form id="custom-rsvp-form"
-        action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeKE887Q8IijwxokMl9bhZXOmuP8-hX_aDN5j36WmyxyIpb2A/formResponse"
-        method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            <form id="custom-rsvp-form"
+                action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeKE887Q8IijwxokMl9bhZXOmuP8-hX_aDN5j36WmyxyIpb2A/formResponse"
+                method="POST" target="hidden_iframe" onsubmit="submitted=true;">
 
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
-        </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
+                </div>
 
-        <div class="form-group">
-            <label for="attending_status">Will you be joining us?</label>
-            <div class="custom-select-wrapper">
-                <select name="entry.552987828" id="attending_status" required>
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="Yes">Yes, I'll be there!</option>
-                    <option value="No">No, unfortunately not</option>
-                </select>
-                <span>▼</span>
+                <div class="form-group">
+                    <label for="attending_status">Will you be joining us?</label>
+                    <div class="custom-select-wrapper">
+                        <select name="entry.552987828" id="attending_status" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Yes">Yes, I'll be there!</option>
+                            <option value="No">No, unfortunately not</option>
+                        </select>
+                        <span>▼</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dinner">Dinner Option</label>
+                    <div class="custom-select-wrapper">
+                        <select name="entry.1940743591" id="dinner" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="Chicken">Chicken</option>
+                            <option value="Fish">Fish</option>
+                            <option value="Vegan">Vegan</option>
+                        </select>
+                        <span>▼</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="button">SUBMIT RSVP</button>
+            </form>
+
+            <script type="text/javascript">
+                var submitted = false;
+                document.getElementById('hidden_iframe').onload = function () {
+                    if (submitted) {
+                        document.getElementById('custom-rsvp-form').style.display = 'none';
+                        document.getElementById('success-message').style.display = 'block';
+                    }
+                };
+            </script>
+
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            <div id="success-message" style="display:none;">
+                <h3>Thanks! Your RSVP has been received.</h3>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="dinner">Dinner Option</label>
-            <div class="custom-select-wrapper">
-                <select name="entry.1940743591" id="dinner" required>
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="Chicken">Chicken</option>
-                    <option value="Fish">Fish</option>
-                    <option value="Vegan">Vegan</option>
-                </select>
-                <span>▼</span>
-            </div>
-        </div>
-
-        <button type="submit" class="button">SUBMIT RSVP</button>
-    </form>
-
-    <script type="text/javascript">
-        var submitted = false;
-        document.getElementById('hidden_iframe').onload = function() {
-            if(submitted) {
-                document.getElementById('custom-rsvp-form').style.display = 'none';
-                document.getElementById('success-message').style.display = 'block';
-            }
-        };
-    </script>
-
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-    <div id="success-message" style="display:none;">
-        <h3>Thanks! Your RSVP has been received.</h3>
-    </div>
-</div>
 
         <h2 id="FAQ"> FAQ </h2>
         <h3> What is the dress code? </h3>
