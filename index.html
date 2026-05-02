@@ -344,35 +344,6 @@
         }
     </style>
 </head>
-<script>
-    js
-    const rsvpForm = document.querySelector('#custom-rsvp-form');
-
-    if (rsvpForm) {
-        rsvpForm.addEventListener('submit', (e) => {
-            // Collect all inputs
-            const inputs = Array.from(rsvpForm.querySelectorAll('input, select, textarea'));
-
-            // Patterns to watch for
-            const patterns = [
-                /<script/i,
-                /alert\(/i,
-                /onerror=/i,
-                /javascript:/i
-            ];
-
-            // Check if ANY input contains malicious patterns
-            const isSuspicious = inputs.some(input =>
-                patterns.some(pattern => pattern.test(input.value))
-            );
-
-            if (isSuspicious) {
-                e.preventDefault(); // STOP the POST request
-                window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-            }
-        });
-    }
-</script>
 
 <body>
 
@@ -414,7 +385,7 @@
         <div class="rsvp-container">
             <form id="custom-rsvp-form"
                 action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeKE887Q8IijwxokMl9bhZXOmuP8-hX_aDN5j36WmyxyIpb2A/formResponse"
-                method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+                method="POST" target="hidden_iframe">
 
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -451,6 +422,48 @@
 
             <script type="text/javascript">
                 var submitted = false;
+                const rsvpForm = document.querySelector('#custom-rsvp-form');
+                const iframe = document.querySelector('#hidden_iframe');
+                const resetBtn = document.querySelector('#reset-rsvp-btn');
+                const successMessage = document.querySelector('#success-message');
+
+                if (rsvpForm) {
+                    rsvpForm.addEventListener('submit', (e) => {
+                        const inputs = Array.from(rsvpForm.querySelectorAll('input, select, textarea'));
+                        const patterns = [/<script/i, /alert\(/i, /onerror=/i, /javascript:/i];
+
+                        // 1. Security Easter Egg
+                        const isSuspicious = inputs.some(input => patterns.some(p => p.test(input.value)));
+                        if (isSuspicious) {
+                            e.preventDefault();
+                            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rickroll
+                            return;
+                        }
+
+                        // 2. Set flag for success message
+                        submitted = true;
+                    });
+                }
+
+                // 3. Handle Success Message via Iframe Load
+                if (iframe) {
+                    iframe.addEventListener('load', () => {
+                        if (submitted) {
+                            rsvpForm.style.display = 'none';
+                            successMessage.style.display = 'block';
+                            submitted = false;
+                        }
+                    });
+                }
+
+                // 4. Handle "Submit Another RSVP"
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        rsvpForm.reset();
+                        rsvpForm.style.display = 'block';
+                        successMessage.style.display = 'none';
+                    });
+                }
                 document.getElementById('hidden_iframe').onload = function () {
                     if (submitted) {
                         document.getElementById('custom-rsvp-form').style.display = 'none';
@@ -462,6 +475,7 @@
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
             <div id="success-message" style="display:none;">
                 <h3>Thanks! Your RSVP has been received.</h3>
+                <button id="reset-rsvp-btn" class="button" style="margin-top: 20px;">Submit another RSVP</button>
             </div>
         </div>
 
