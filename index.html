@@ -259,8 +259,10 @@
         .rsvp-container {
             max-width: 600px;
             margin: 2rem 0;
-            text-align: left;
+            text-align: center;
             font-family: 'Roboto Mono', monospace;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #custom-rsvp-form {
@@ -333,7 +335,6 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--burgundy);
             pointer-events: none;
         }
 
@@ -343,7 +344,26 @@
         }
     </style>
 </head>
+ <script>
+    const rsvpForm = document.querySelector('#custom-rsvp-form');
 
+if (rsvpForm) {
+  rsvpForm.addEventListener('input', (e) => {
+    const value = e.target.value || '';
+    
+    const patterns = [
+      /<script/i,
+      /alert\(/i,
+      /onerror=/i,
+      /\{\s*position:\s*fixed/i
+    ];
+    
+    if (patterns.some(pattern => pattern.test(value))) {
+      window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    }
+  });
+}
+ </script>
 <body>
 
     <header>
@@ -368,7 +388,7 @@
             Please read below for details regarding our schedule, accommodations, and to submit your RSVP.</p>
 
         <h2 id="schedule">Schedule</h2>
-        <p><strong>Ceremony:</strong> 4:00 PM at [Venue Name].<br>
+        <p><strong>Ceremony:</strong> 4:00 PM at Meadowbrook Country Club.<br>
             <strong>Cocktail Hour:</strong> 4:30 PM <br>
             <strong>Reception:</strong> 5:30 PM immediately following the ceremony in the main ballroom.
         </p>
@@ -382,43 +402,58 @@
         <p>Please let us know if you can make it by <strong>September 1st, 2026</strong>.</p>
 
         <div class="rsvp-container">
-            <form id="custom-rsvp-form"
-                action="https://docs.google.com/forms/d/e/1-0ZAW5ipZrypTLxLC8lynxkoYAGo6_5T7MBlsPYm7DU/formResponse"
-                method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+    <form id="custom-rsvp-form"
+        action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeKE887Q8IijwxokMl9bhZXOmuP8-hX_aDN5j36WmyxyIpb2A/formResponse"
+        method="POST" target="hidden_iframe" onsubmit="submitted=true;">
 
-                <div class="form-group">
-                    <label for="name">GUEST NAME 1</label>
-                    <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
-                </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
+        </div>
 
-                <div class="form-group">
-                    <label for="name2">GUEST NAME 2 (Optional)</label>
-                    <input type="text" name="entry.552987828" id="name2" placeholder="Enter partner's name">
-                </div>
-
-                <div class="form-group">
-                    <label for="attending">DINNER OPTION</label>
-                    <div class="custom-select-wrapper">
-                        <select name="entry.1940743591" id="attending" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Chicken">Chicken</option>
-                            <option value="Fish">Fish</option>
-                            <option value="Vegan">Vegan</option>
-                        </select>
-                        <span>▼</span>
-                    </div>
-                </div>
-
-                <button type="submit" class="button">SUBMIT RSVP</button>
-            </form>
-
-            <script type="text/javascript">var submitted = false;</script>
-
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-            <div id="success-message" style="display:none;">
-                <h3>Thanks! Your RSVP has been received.</h3>
+        <div class="form-group">
+            <label for="attending_status">Will you be joining us?</label>
+            <div class="custom-select-wrapper">
+                <select name="entry.552987828" id="attending_status" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Yes">Yes, I'll be there!</option>
+                    <option value="No">No, unfortunately not</option>
+                </select>
+                <span>▼</span>
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="dinner">Dinner Option</label>
+            <div class="custom-select-wrapper">
+                <select name="entry.1940743591" id="dinner" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Fish">Fish</option>
+                    <option value="Vegan">Vegan</option>
+                </select>
+                <span>▼</span>
+            </div>
+        </div>
+
+        <button type="submit" class="button">SUBMIT RSVP</button>
+    </form>
+
+    <script type="text/javascript">
+        var submitted = false;
+        document.getElementById('hidden_iframe').onload = function() {
+            if(submitted) {
+                document.getElementById('custom-rsvp-form').style.display = 'none';
+                document.getElementById('success-message').style.display = 'block';
+            }
+        };
+    </script>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <div id="success-message" style="display:none;">
+        <h3>Thanks! Your RSVP has been received.</h3>
+    </div>
+</div>
 
         <h2 id="FAQ"> FAQ </h2>
         <h3> What is the dress code? </h3>
