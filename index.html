@@ -420,10 +420,46 @@
                 <button type="submit" class="button">SUBMIT RSVP</button>
             </form>
 
-            <script type="text/javascript">
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            <div id="success-message" style="display:none;">
+                <h3>Thanks! Your RSVP has been received.</h3>
+                <button id="reset-rsvp-btn" class="button" style="margin-top: 20px;">Submit another RSVP</button>
+            </div>
+        </div>
+
+        <h2 id="FAQ"> FAQ </h2>
+        <h3> What is the dress code? </h3>
+        <p> TODO </p>
+        <h3> Are children allowed? </h3>
+        <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your understanding!
+        </p>
+        <h3> Will there be parking available? </h3>
+        <p> Yes, there will be valet parking on site </p>
+
+        <h2 id=" gallery">Gallery</h2>
+        <section class="photo-grid">
+            <div class="photo-item tall"><img src="images/asset1.jpg"></div>
+            <div class="photo-item wide"><img src="images/asset2.jpg"></div>
+            <div class="photo-item"><img src="images/asset3.jpg"></div>
+            <div class="photo-item"><img src="images/asset5.jpg"></div>
+
+            <div class="photo-item"><img src="images/asset6.jpg"></div>
+            <div class="photo-item wide"><img src="images/asset7.jpg"></div>
+            <div class="photo-item"><img src="images/asset8.jpg"></div>
+
+            <div class="photo-item tall"><img src="images/asset10.jpg"></div>
+            <div class="photo-item"><img src="images/asset13.jpg"></div>
+            <div class="photo-item"><img src="images/asset9.jpg"></div>
+            <div class="photo-item wide"><img src="images/asset4.jpg"></div>
+
+        </section>
+    </main>
+
+
+    <script type="text/javascript">
                 var submitted = false;
                 const rsvpForm = document.querySelector('#custom-rsvp-form');
-                const iframe = document.querySelector('#hidden_iframe');
+                const iframe = document.getElementById('hidden_iframe');
                 const resetBtn = document.querySelector('#reset-rsvp-btn');
                 const successMessage = document.querySelector('#success-message');
 
@@ -471,42 +507,6 @@
                     }
                 };
             </script>
-
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-            <div id="success-message" style="display:none;">
-                <h3>Thanks! Your RSVP has been received.</h3>
-                <button id="reset-rsvp-btn" class="button" style="margin-top: 20px;">Submit another RSVP</button>
-            </div>
-        </div>
-
-        <h2 id="FAQ"> FAQ </h2>
-        <h3> What is the dress code? </h3>
-        <p> TODO </p>
-        <h3> Are children allowed? </h3>
-        <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your understanding!
-        </p>
-        <h3> Will there be parking available? </h3>
-        <p> Yes, there will be valet parking on site </p>
-
-        <h2 id=" gallery">Gallery</h2>
-        <section class="photo-grid">
-            <div class="photo-item tall"><img src="images/asset1.jpg"></div>
-            <div class="photo-item wide"><img src="images/asset2.jpg"></div>
-            <div class="photo-item"><img src="images/asset3.jpg"></div>
-            <div class="photo-item"><img src="images/asset5.jpg"></div>
-
-            <div class="photo-item"><img src="images/asset6.jpg"></div>
-            <div class="photo-item wide"><img src="images/asset7.jpg"></div>
-            <div class="photo-item"><img src="images/asset8.jpg"></div>
-
-            <div class="photo-item tall"><img src="images/asset10.jpg"></div>
-            <div class="photo-item"><img src="images/asset13.jpg"></div>
-            <div class="photo-item"><img src="images/asset9.jpg"></div>
-            <div class="photo-item wide"><img src="images/asset4.jpg"></div>
-
-        </section>
-    </main>
-
 </body>
 
 </html>
