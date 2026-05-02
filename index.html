@@ -175,24 +175,28 @@
         }
 
         .photo-grid {
-            display: grid !important;
-            grid-auto-rows: 100px !important;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
-            gap: 8px !important;
-            width: 100% !important;
-            grid-auto-flow: dense !important;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 200px;
+            grid-auto-flow: dense;
+            max-width: 800px;
+            margin: 40px auto;
         }
 
         .photo-item {
             width: 100% !important;
             aspect-ratio: 1 / 1;
             overflow: hidden !important;
+            position: relative;
         }
 
         .photo-item img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .photo-item.tall {
@@ -208,19 +212,6 @@
             border-color: var(--burgundy);
             transform: scale(1.01);
             z-index: 10;
-        }
-
-        @media (max-width: 600px) {
-            .photo-grid {
-                grid-template-columns: 1fr;
-                grid-auto-rows: 250px;
-            }
-
-            .photo-item.wide,
-            .photo-item.tall {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
         }
 
         @media (max-width: 600px) {
@@ -441,7 +432,7 @@
             <div class="photo-item.tall"><img src="images/asset10.jpg"></div>
             <div class="photo-item.wide"><img src="images/asset8.jpg"></div>
             <div class="photo-item"><img src="images/asset13.jpg"></div>
-            <div class="photo-item"><img src="images/asset11.jpg"></div>
+            <div class="photo-item"><img src="images/asset12.jpg"></div>
         </section>
     </main>
 
