@@ -304,7 +304,7 @@
         .form-group select:focus {
             outline: none !important;
             border-color: var(--burgundy) !important;
-            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1), 3px 3px 0px var(--burgundy) !important;
+            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1), 3px 3px 0px !important;
             transform: translate(-1px, -1px);
         }
 
@@ -388,7 +388,7 @@
                 method="POST" target="hidden_iframe">
 
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Name - Enter it exactly how it is printed on the invitation</label>
                     <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
                 </div>
 
@@ -455,58 +455,57 @@
         </section>
     </main>
 
-
     <script type="text/javascript">
-                var submitted = false;
-                const rsvpForm = document.querySelector('#custom-rsvp-form');
-                const iframe = document.getElementById('hidden_iframe');
-                const resetBtn = document.querySelector('#reset-rsvp-btn');
-                const successMessage = document.querySelector('#success-message');
+        var submitted = false;
+        const rsvpForm = document.querySelector('#custom-rsvp-form');
+        const iframe = document.getElementById('hidden_iframe');
+        const resetBtn = document.querySelector('#reset-rsvp-btn');
+        const successMessage = document.querySelector('#success-message');
 
-                if (rsvpForm) {
-                    rsvpForm.addEventListener('submit', (e) => {
-                        const inputs = Array.from(rsvpForm.querySelectorAll('input, select, textarea'));
-                        const patterns = [/<script/i, /alert\(/i, /onerror=/i, /javascript:/i];
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', (e) => {
+                const inputs = Array.from(rsvpForm.querySelectorAll('input, select, textarea'));
+                const patterns = [/<script/i, /alert\(/i, /onerror=/i, /javascript:/i];
 
-                        // 1. Security Easter Egg
-                        const isSuspicious = inputs.some(input => patterns.some(p => p.test(input.value)));
-                        if (isSuspicious) {
-                            e.preventDefault();
-                            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rickroll
-                            return;
-                        }
-
-                        // 2. Set flag for success message
-                        submitted = true;
-                    });
+                // 1. Security Easter Egg
+                const isSuspicious = inputs.some(input => patterns.some(p => p.test(input.value)));
+                if (isSuspicious) {
+                    e.preventDefault();
+                    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rickroll
+                    return;
                 }
 
-                // 3. Handle Success Message via Iframe Load
-                if (iframe) {
-                    iframe.addEventListener('load', () => {
-                        if (submitted) {
-                            rsvpForm.style.display = 'none';
-                            successMessage.style.display = 'block';
-                            submitted = false;
-                        }
-                    });
-                }
+                // 2. Set flag for success message
+                submitted = true;
+            });
+        }
 
-                // 4. Handle "Submit Another RSVP"
-                if (resetBtn) {
-                    resetBtn.addEventListener('click', () => {
-                        rsvpForm.reset();
-                        rsvpForm.style.display = 'block';
-                        successMessage.style.display = 'none';
-                    });
+        // 3. Handle Success Message via Iframe Load
+        if (iframe) {
+            iframe.addEventListener('load', () => {
+                if (submitted) {
+                    rsvpForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    submitted = false;
                 }
-                document.getElementById('hidden_iframe').onload = function () {
-                    if (submitted) {
-                        document.getElementById('custom-rsvp-form').style.display = 'none';
-                        document.getElementById('success-message').style.display = 'block';
-                    }
-                };
-            </script>
+            });
+        }
+
+        // 4. Handle "Submit Another RSVP"
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                rsvpForm.reset();
+                rsvpForm.style.display = 'block';
+                successMessage.style.display = 'none';
+            });
+        }
+        document.getElementById('hidden_iframe').onload = function () {
+            if (submitted) {
+                document.getElementById('custom-rsvp-form').style.display = 'none';
+                document.getElementById('success-message').style.display = 'block';
+            }
+        };
+    </script>
 </body>
 
 </html>
