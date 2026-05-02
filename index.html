@@ -61,7 +61,7 @@
             position: relative !important;
             z-index: 2 !important;
             color: transparent !important;
-            -webkit-text-stroke: 1.5px var(--dark-green) !important;
+            -webkit-text-stroke: 1px var(--dark-green) !important;
             line-height: 1 !important;
             transition: color 0.3s ease !important;
             margin: 0 !important;
@@ -165,7 +165,7 @@
 
         p {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75px;
+            font-size: 0.75rem;
             line-height: 1.8;
             color: var(--light-grey);
             margin-bottom: 1.5rem;
@@ -196,6 +196,12 @@
             justify-content: center;
             position: relative;
             transition: transform 0.3s ease;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .photo-item::after {
@@ -434,7 +440,8 @@
         <h3> What is the dress code? </h3>
         <p> TODO </p>
         <h3> Are children allowed? </h3>
-        <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your understanding! </p>
+        <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your understanding!
+        </p>
         <h3> Will there be parking available? </h3>
         <p> Yes, there will be valet parking on site </p>
 
