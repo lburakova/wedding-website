@@ -342,6 +342,54 @@
             appearance: none;
             -webkit-appearance: none;
         }
+
+        /* Form Sections & Collapsibility */
+        .form-section {
+            border-top: 1px dashed var(--gold);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .form-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--burgundy);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .collapsible-section {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, margin-top 0.4s ease-out, padding-top 0.4s ease-out;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .collapsible-section.show {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--gold);
+        }
+
+        .dinner-group {
+            max-height: 150px;
+            opacity: 1;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.3s ease-out;
+        }
+
+        .dinner-group.hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-bottom: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -369,15 +417,16 @@
             Please read below for details regarding our schedule, accommodations, and to submit your RSVP.</p>
 
         <h2 id="schedule">Schedule</h2>
-        <p><strong>Ceremony:</strong> 4:00 PM at Meadowbrook Country Club.<br>
-            <strong>Cocktail Hour:</strong> 4:30 PM <br>
-            <strong>Reception:</strong> 5:30 PM immediately following the ceremony in the main ballroom.
+        <p><strong>Ceremony:</strong> 4:30 PM at Meadowbrook Country Club.<br>
+            <strong>Cocktail Hour:</strong> 5:00 PM <br>
+            <strong>Reception:</strong> 6:00 PM immediately following the ceremony in the main ballroom.
         </p>
 
         <h2 id="travel">Travel & Accommodations</h2>
         <p> We recommend either the <a
                 href="https://www.hilton.com/en/hotels/dttnvhx-hampton-detroit-northville">Hampton Inn</a> or <a
-                href="https://www.saintjohnsresort.com/"> St John's Resort </a> </p>
+                href="https://www.saintjohnsresort.com/"> St John's Resort. </a> There will be a shuttle running from
+            the venue back to the hotels starting at 10:00pm. </p>
 
         <h2 id="rsvp">RSVP</h2>
         <p>Please let us know if you can make it by <strong>September 1st, 2026</strong>.</p>
@@ -387,37 +436,89 @@
                 action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeKE887Q8IijwxokMl9bhZXOmuP8-hX_aDN5j36WmyxyIpb2A/formResponse"
                 method="POST" target="hidden_iframe">
 
+                <!-- Guest Count Selection -->
                 <div class="form-group">
-                    <label for="name">Name - Enter it exactly how it is printed on the invitation</label>
-                    <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="attending_status">Will you be joining us?</label>
+                    <label for="num_guests">Number of Guests</label>
                     <div class="custom-select-wrapper">
-                        <select name="entry.552987828" id="attending_status" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Yes">Yes, I'll be there!</option>
-                            <option value="No">No, unfortunately not</option>
+                        <select id="num_guests" required>
+                            <option value="1" selected>1 Guest</option>
+                            <option value="2">2 Guests</option>
                         </select>
                         <span>▼</span>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="dinner">Dinner Option</label>
-                    <div class="custom-select-wrapper">
-                        <select name="entry.1940743591" id="dinner" required>
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="Chicken">Chicken</option>
-                            <option value="Fish">Fish</option>
-                            <option value="Vegan">Vegan</option>
-                        </select>
-                        <span>▼</span>
+                <!-- Guest 1 Section -->
+                <div class="form-section" id="guest1-section">
+                    <h3>Guest 1</h3>
+                    <div class="form-group">
+                        <label for="name">Name - Enter it exactly how it is printed on the invitation</label>
+                        <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attending_status">Will you be joining us?</label>
+                        <div class="custom-select-wrapper">
+                            <select name="entry.552987828" id="attending_status" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes, I'll be there!</option>
+                                <option value="No">No, unfortunately not</option>
+                            </select>
+                            <span>▼</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group dinner-group" id="guest1-dinner-group">
+                        <label for="dinner">Dinner Option</label>
+                        <div class="custom-select-wrapper">
+                            <select name="entry.1940743591" id="dinner">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="chicken piccata">Chicken Piccata</option>
+                                <option value="roasted salmon">Roasted Salmon</option>
+                                <option value="filet mignon">Filet Mignon</option>
+                                <option value="ratatouille (vegan)">Ratatouille (Vegan)</option>
+                            </select>
+                            <span>▼</span>
+                        </div>
                     </div>
                 </div>
 
-                <button type="submit" class="button">SUBMIT RSVP</button>
+                <!-- Guest 2 Section -->
+                <div class="form-section collapsible-section" id="guest2-section">
+                    <h3>Guest 2</h3>
+                    <div class="form-group">
+                        <label for="guest2_name">Name - Enter it exactly how it is printed on the invitation</label>
+                        <input type="text" name="entry.1875318315" id="guest2_name" placeholder="Enter guest name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guest2_attending_status">Will you be joining us?</label>
+                        <div class="custom-select-wrapper">
+                            <select name="entry.567594056" id="guest2_attending_status">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes, I'll be there!</option>
+                                <option value="No">No, unfortunately not</option>
+                            </select>
+                            <span>▼</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group dinner-group" id="guest2-dinner-group">
+                        <label for="guest2_dinner">Dinner Option</label>
+                        <div class="custom-select-wrapper">
+                            <select name="entry.162562349" id="guest2_dinner">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="chicken piccata">Chicken Piccata</option>
+                                <option value="roasted salmon">Roasted Salmon</option>
+                                <option value="filet mignon">Filet Mignon</option>
+                                <option value="ratatouille (vegan)">Ratatouille (Vegan)</option>
+                            </select>
+                            <span>▼</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="button" style="margin-top: 20px;">SUBMIT RSVP</button>
             </form>
 
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
@@ -429,12 +530,19 @@
 
         <h2 id="FAQ"> FAQ </h2>
         <h3> What is the dress code? </h3>
-        <p> TODO </p>
+        <p> Formal but the bride also challenges guests to try to upstage her. </p>
+        <h3> Ok what does that actually mean? </h3>
+        <p> It means please don't worry about dressing "too much"! Do you have a ball gown you've been dying to wear? A
+            sparkly suit? A bright pink suit? This is the occasion for those! Please see <a
+                href="https://people.com/upstage-the-bride-wedding-dress-code-goes-viral-exclusive-11681819"> this
+                random People article </a> for some inspiration.</a></p>
         <h3> Are children allowed? </h3>
         <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your understanding!
         </p>
         <h3> Will there be parking available? </h3>
         <p> Yes, there will be valet parking on site </p>
+        <h3> Will the wedding be indoors or outdoors? </h3>
+        <p> The ceremony will be outside, cocktail hour and reception will be indoors. </p>
 
         <h2 id=" gallery">Gallery</h2>
         <section class="photo-grid">
@@ -461,6 +569,83 @@
         const iframe = document.getElementById('hidden_iframe');
         const resetBtn = document.querySelector('#reset-rsvp-btn');
         const successMessage = document.querySelector('#success-message');
+
+        // Dynamic UI elements for RSVP Form
+        const numGuestsSelect = document.getElementById('num_guests');
+        const guest2Section = document.getElementById('guest2-section');
+
+        const guest1Attending = document.getElementById('attending_status');
+        const guest1DinnerGroup = document.getElementById('guest1-dinner-group');
+        const guest1DinnerSelect = document.getElementById('dinner');
+
+        const guest2NameInput = document.getElementById('guest2_name');
+        const guest2Attending = document.getElementById('guest2_attending_status');
+        const guest2DinnerGroup = document.getElementById('guest2-dinner-group');
+        const guest2DinnerSelect = document.getElementById('guest2_dinner');
+
+        function updateGuest2Visibility() {
+            if (numGuestsSelect && numGuestsSelect.value === '2') {
+                guest2Section.classList.add('show');
+                if (guest2NameInput) guest2NameInput.required = true;
+                if (guest2Attending) guest2Attending.required = true;
+                updateGuest2DinnerVisibility();
+            } else {
+                if (guest2Section) guest2Section.classList.remove('show');
+                if (guest2NameInput) {
+                    guest2NameInput.required = false;
+                    guest2NameInput.value = '';
+                }
+                if (guest2Attending) {
+                    guest2Attending.required = false;
+                    guest2Attending.value = '';
+                }
+                if (guest2DinnerSelect) {
+                    guest2DinnerSelect.required = false;
+                    guest2DinnerSelect.value = '';
+                }
+                updateGuest2DinnerVisibility();
+            }
+        }
+
+        function updateGuest1DinnerVisibility() {
+            if (guest1Attending && guest1Attending.value === 'Yes') {
+                if (guest1DinnerGroup) guest1DinnerGroup.classList.remove('hidden');
+                if (guest1DinnerSelect) guest1DinnerSelect.required = true;
+            } else {
+                if (guest1DinnerGroup) guest1DinnerGroup.classList.add('hidden');
+                if (guest1DinnerSelect) {
+                    guest1DinnerSelect.required = false;
+                    guest1DinnerSelect.value = '';
+                }
+            }
+        }
+
+        function updateGuest2DinnerVisibility() {
+            if (numGuestsSelect && numGuestsSelect.value === '2' && guest2Attending && guest2Attending.value === 'Yes') {
+                if (guest2DinnerGroup) guest2DinnerGroup.classList.remove('hidden');
+                if (guest2DinnerSelect) guest2DinnerSelect.required = true;
+            } else {
+                if (guest2DinnerGroup) guest2DinnerGroup.classList.add('hidden');
+                if (guest2DinnerSelect) {
+                    guest2DinnerSelect.required = false;
+                    guest2DinnerSelect.value = '';
+                }
+            }
+        }
+
+        if (numGuestsSelect) {
+            numGuestsSelect.addEventListener('change', updateGuest2Visibility);
+        }
+        if (guest1Attending) {
+            guest1Attending.addEventListener('change', updateGuest1DinnerVisibility);
+        }
+        if (guest2Attending) {
+            guest2Attending.addEventListener('change', updateGuest2DinnerVisibility);
+        }
+
+        // Initialize form states
+        updateGuest2Visibility();
+        updateGuest1DinnerVisibility();
 
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', (e) => {
@@ -495,16 +680,12 @@
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
                 rsvpForm.reset();
+                updateGuest2Visibility();
+                updateGuest1DinnerVisibility();
                 rsvpForm.style.display = 'block';
                 successMessage.style.display = 'none';
             });
         }
-        document.getElementById('hidden_iframe').onload = function () {
-            if (submitted) {
-                document.getElementById('custom-rsvp-form').style.display = 'none';
-                document.getElementById('success-message').style.display = 'block';
-            }
-        };
     </script>
 </body>
 
