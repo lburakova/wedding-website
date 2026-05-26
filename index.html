@@ -6,210 +6,444 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Wedding</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,300..900;1,300..900&family=Montserrat:wght@300;400;600&display=swap"
         rel="stylesheet">
 
     <style>
         :root {
-            --burgundy: #660033;
-            --gold: #D4AF37;
-            --cream: #FDF5E6;
-            --dark-green: #013220;
-            --soft-gold: #F9F1D7;
-            --light-grey: #70757a;
-            --dark-grey: #333;
+            /* Color Palette (Inspired by Annie Spratt Moody Romance & User's Wedding Colors) */
+            --emerald-deep: #0B1C15;
+            /* Deepest dark emerald green */
+            --emerald-rich: #123226;
+            /* Rich green accent */
+            --emerald-soft: #2D4A3F;
+            /* Mid emerald green */
+            --burgundy-deep: #360A1F;
+            /* Dark wine/burgundy */
+            --burgundy-rich: #541232;
+            /* Rich burgundy highlight */
+            --gold-rich: #C39B50;
+            /* Metallic warm gold */
+            --gold-soft: #FAF6EE;
+            /* Elegant cream/warm-ivory background */
+            --cream-white: #FDFDFB;
+            /* Bright card background */
+            --text-dark: #1A2823;
+            /* High-legibility dark green-black */
+            --text-muted: #60726B;
+            /* Sage-grey subtext */
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         body,
         html {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--cream);
+            font-family: 'EB Garamond', Georgia, serif;
+            background-color: var(--gold-soft);
+            color: var(--text-dark);
             overflow-x: hidden !important;
             width: 100%;
             position: relative;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
         }
 
+        /* Floating Header with sheer background */
         header {
-            max-width: 100vw !important;
-            overflow: hidden !important;
-            border: none !important;
-            background: transparent !important;
-            padding: 0 !important;
+            position: fixed !important;
+            top: 0;
+            left: 0;
             width: 100% !important;
+            z-index: 1000 !important;
+            background: rgba(11, 28, 21, 0.92) !important;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(195, 155, 80, 0.2) !important;
+            transition: var(--transition-smooth);
         }
 
         .nav-container {
             display: flex !important;
             flex-direction: row !important;
             flex-wrap: wrap !important;
-            align-items: baseline !important;
+            align-items: center !important;
             justify-content: space-between !important;
-            position: relative !important;
-            padding: 32px 20px !important;
+            padding: 20px 40px !important;
             margin: 0 auto !important;
-            max-width: 100% !important;
+            max-width: 1200px !important;
             box-sizing: border-box !important;
         }
 
         .nav-brand {
-            font-size: clamp(24px, 4vw, 52px) !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.05em !important;
+            font-family: 'WindSong', cursive !important;
+            font-size: clamp(28px, 4vw, 42px) !important;
+            font-style: normal !important;
+            text-transform: none !important;
+            letter-spacing: 0.02em !important;
             text-decoration: none !important;
-            font-weight: 700 !important;
+            font-weight: 400 !important;
             display: inline-block !important;
-            position: relative !important;
             z-index: 2 !important;
-            color: transparent !important;
-            -webkit-text-stroke: 0.75px var(--dark-green) !important;
-            line-height: 1 !important;
-            transition: color 0.3s ease !important;
+            color: var(--gold-rich) !important;
+            transition: var(--transition-smooth) !important;
             margin: 0 !important;
             white-space: nowrap !important;
         }
 
-        .nav-brand::after {
-            content: "" !important;
-            position: absolute !important;
-            left: 0 !important;
-            width: 300vw !important;
-            bottom: 5px !important;
-            height: 3px !important;
-            background-color: var(--dark-green) !important;
-            z-index: -1 !important;
-            pointer-events: none !important;
-        }
-
         .nav-brand:hover {
-            color: var(--dark-green) !important;
+            color: var(--gold-soft) !important;
+            opacity: 0.9;
         }
 
         .nav-links {
             display: flex !important;
             flex-direction: row !important;
-            gap: 25px !important;
+            gap: 35px !important;
             z-index: 3 !important;
             position: relative !important;
-            padding-left: 15px !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
 
         .nav-links a {
-            color: var(--dark-green) !important;
-            font-weight: bold !important;
+            color: var(--gold-soft) !important;
+            font-family: 'Montserrat', sans-serif !important;
+            font-weight: 400 !important;
             text-transform: uppercase !important;
             text-decoration: none !important;
-            font-size: 1rem !important;
+            font-size: 0.8rem !important;
+            letter-spacing: 0.15em !important;
+            transition: var(--transition-smooth) !important;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gold-rich);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-rich) !important;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         @media (max-width: 1050px) {
             .nav-container {
-                flex-direction: column !important;
-                align-items: flex-start !important;
+                padding: 15px 20px !important;
             }
 
             .nav-links {
-                margin-top: 10px !important;
-                padding-left: 0 !important;
-                background: transparent !important;
+                gap: 20px !important;
             }
         }
 
-        main {
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column !important;
+                gap: 10px;
+                align-items: center !important;
+            }
+
+            .nav-links {
+                gap: 15px !important;
+            }
+        }
+
+        /* Hero Banner Section */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('images/annie-spratt-J4gm_1GKfAA-unsplash.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 0;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(11, 28, 21, 0.5), rgba(11, 28, 21, 0.9));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--gold-soft);
+            padding: 20px;
             max-width: 800px;
+            animation: fadeIn 1.8s ease-out;
+        }
+
+        .hero-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold-rich);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .hero-names {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .hero-names .name-first,
+        .hero-names .name-second,
+        .hero-names .ampersand {
+            font-family: 'WindSong', cursive;
+            font-size: clamp(64px, 13vw, 120px);
+            line-height: 0.95;
+            color: var(--cream-white);
+            text-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.02em;
+        }
+
+        .hero-names .ampersand {
+            margin: 5px 0;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .hero-location {
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            font-style: italic;
+            color: var(--gold-soft);
+            margin-bottom: 35px;
+        }
+
+        .hero-cta {
+            font-family: 'Montserrat', sans-serif;
+            display: inline-block;
+            background-color: transparent;
+            color: var(--gold-rich);
+            border: 1px solid var(--gold-rich);
+            padding: 14px 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .hero-cta:hover {
+            background-color: var(--gold-rich);
+            color: var(--emerald-deep);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Container styling */
+        main {
+            max-width: 850px;
             margin: 0 auto;
-            padding: 3rem 1.5rem 5rem 1.5rem;
+            padding: 5rem 2rem 5rem 2rem;
+            position: relative;
         }
 
         .post-meta {
-            color: var(--light-grey);
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
         }
 
         .post-meta span.location {
-            color: var(--burgundy);
+            color: var(--burgundy-rich);
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.25rem;
-            color: var(--burgundy);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-style: italic;
+            font-weight: 300;
+            text-align: center;
+            color: var(--burgundy-rich);
             margin: 0 0 2rem 0;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            border-bottom: 1px solid var(--burgundy);
+            line-height: 1.2;
+        }
+
+        /* Beautiful decorative elegant separator under h1 or h2 */
+        .separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2.5rem auto;
+            opacity: 0.6;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            height: 1px;
+            width: 100px;
+            background: linear-gradient(to right, transparent, var(--gold-rich), transparent);
+        }
+
+        .separator-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--gold-rich);
+            border-radius: 50%;
+            margin: 0 15px;
+            position: relative;
+            transform: rotate(45deg);
+        }
+
+        .separator-dot::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--gold-rich);
+            top: -3px;
+            left: -3px;
         }
 
         h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--burgundy);
-            margin-top: 3.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--burgundy);
-            padding-bottom: 0.5rem;
-            font-weight: 500;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-style: italic;
+            font-weight: 300;
+            color: var(--emerald-rich);
+            margin-top: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background-color: var(--gold-rich);
         }
 
         h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--dark-grey);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.35rem;
+            color: var(--burgundy-rich);
             margin: 0;
-            border-bottom: none;
-            width: auto;
         }
 
         p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 1.2rem;
             line-height: 1.8;
-            color: var(--light-grey);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.02em;
-            text-align: left;
+            color: var(--text-dark);
+            margin-bottom: 1.8rem;
+            text-align: center;
         }
 
+        p strong {
+            color: var(--emerald-rich);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--burgundy-rich);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(92, 18, 50, 0.3);
+            transition: var(--transition-smooth);
+        }
+
+        a:hover {
+            color: var(--emerald-rich);
+            border-color: var(--emerald-rich);
+        }
+
+        /* Photo Grid styled as elegant arches (Bliss & Bone signature "Serena" theme) */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 200px;
+            grid-auto-rows: 240px;
             grid-auto-flow: dense;
-            /* Crucial for packing images into gaps */
-            gap: 16px;
+            gap: 24px;
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 60px auto;
         }
 
-        /* 2. Proportions */
         .photo-item {
             position: relative;
             overflow: hidden;
+            box-shadow: 0 15px 35px rgba(11, 28, 21, 0.1);
+            transition: var(--transition-smooth);
+            background-color: var(--emerald-deep);
+            border: 1px solid rgba(195, 155, 80, 0.15);
         }
 
-        /* Feature Block (2x2) */
+        /* Serena Signature Arch Shape styling */
         .photo-item.tall {
             grid-column: span 2;
             grid-row: span 2;
+            border-top-left-radius: 180px;
+            border-top-right-radius: 180px;
         }
 
-        /* Wide Rectangle (2x1) */
         .photo-item.wide {
             grid-column: span 2;
             grid-row: span 1;
+            border-top-left-radius: 120px;
+            border-top-right-radius: 120px;
         }
 
-        /* Standard Square (1x1) */
         .photo-item.square {
             grid-column: span 1;
             grid-row: span 1;
+            border-top-left-radius: 80px;
+            border-top-right-radius: 80px;
         }
 
-        /* 3. Image Handling */
         .photo-item img {
             width: 100%;
             height: 100%;
@@ -217,113 +451,120 @@
             position: absolute;
             top: 0;
             left: 0;
+            filter: grayscale(15%) contrast(105%);
+            transition: var(--transition-smooth);
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.8rem;
-            }
+        .photo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(11, 28, 21, 0.2);
+            border-color: var(--gold-rich);
+        }
 
-            .nav-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        .photo-item:hover img {
+            transform: scale(1.04);
+            filter: grayscale(0%) contrast(100%);
+        }
 
-            .nav-links {
-                margin-top: 10px;
-            }
-
-            .nav-links a {
-                margin-left: 0;
-                margin-right: 1rem;
-            }
-
+        @media (max-width: 768px) {
             .photo-grid {
                 grid-template-columns: 1fr;
-                /* Single column on mobile */
-                grid-auto-rows: 250px;
+                grid-auto-rows: 320px;
+                gap: 20px;
             }
 
             .photo-item.wide,
-            .photo-item.tall {
+            .photo-item.tall,
+            .photo-item.square {
                 grid-column: span 1;
                 grid-row: span 1;
-            }
-
-            .photo-item img[src*="asset13.jpg"] {
-                object-position: top !important;
+                border-top-left-radius: 150px;
+                border-top-right-radius: 150px;
             }
         }
 
-        /* RSVP Section */
+        /* RSVP Section & Card styling */
         .rsvp-container {
-            max-width: 600px;
-            margin: 2rem 0;
+            max-width: 580px;
+            margin: 3rem auto;
             text-align: center;
-            font-family: 'Roboto Mono', monospace;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         #custom-rsvp-form {
-            background-color: var(--soft-gold);
-            padding: 30px;
-            border: 1px solid var(--gold);
-            border-radius: 0px;
+            background-color: var(--cream-white);
+            padding: 40px 35px;
+            border: 1px solid rgba(195, 155, 80, 0.3);
+            outline: 3px double rgba(195, 155, 80, 0.2);
+            outline-offset: -8px;
+            box-shadow: 0 20px 50px rgba(11, 28, 21, 0.08);
             text-align: left;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             flex-direction: column;
         }
 
         .form-group label {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             display: block;
-            margin-bottom: 8px;
-            color: var(--dark-green);
+            margin-bottom: 10px;
+            color: var(--emerald-rich);
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 12px;
-            background-color: var(--cream) !important;
-            border: 1px solid var(--gold) !important;
-            color: var(--dark-green) !important;
-            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1), 2px 2px 0px rgba(212, 175, 55, 0.3) !important;
+            padding: 14px 16px;
+            background-color: var(--gold-soft) !important;
+            border: 1px solid rgba(195, 155, 80, 0.4) !important;
+            color: var(--text-dark) !important;
             border-radius: 0px;
-            font-family: 'Inter', sans-serif;
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 1.1rem;
             box-sizing: border-box;
+            box-shadow: none !important;
+            transition: var(--transition-smooth);
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none !important;
-            border-color: var(--burgundy) !important;
-            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1), 3px 3px 0px !important;
-            transform: translate(-1px, -1px);
+            border-color: var(--burgundy-rich) !important;
+            background-color: var(--cream-white) !important;
+            box-shadow: 0 5px 15px rgba(92, 18, 50, 0.05) !important;
         }
 
+        /* Submit button styled luxuriously */
         .button {
             width: 100%;
-            background-color: var(--burgundy) !important;
-            color: white !important;
-            border: none;
-            padding: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 3px 3px 0px var(--gold) !important;
+            background-color: var(--emerald-deep) !important;
+            color: var(--gold-soft) !important;
+            border: 1px solid var(--gold-rich);
+            padding: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: none !important;
+        }
+
+        .button:hover {
+            background-color: var(--gold-rich) !important;
+            color: var(--emerald-deep) !important;
+            box-shadow: 0 10px 25px rgba(195, 155, 80, 0.25) !important;
         }
 
         .button:active {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0px var(--gold) !important;
+            transform: translateY(1px);
         }
 
         .custom-select-wrapper {
@@ -332,10 +573,12 @@
 
         .custom-select-wrapper span {
             position: absolute;
-            right: 15px;
+            right: 18px;
             top: 50%;
             transform: translateY(-50%);
             pointer-events: none;
+            font-size: 0.8rem;
+            color: var(--gold-rich);
         }
 
         select {
@@ -345,25 +588,26 @@
 
         /* Form Sections & Collapsibility */
         .form-section {
-            border-top: 1px dashed var(--gold);
-            padding-top: 20px;
-            margin-top: 20px;
+            border-top: 1px dashed rgba(195, 155, 80, 0.4);
+            padding-top: 25px;
+            margin-top: 25px;
         }
 
         .form-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--burgundy);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            color: var(--burgundy-rich);
             margin-top: 0;
-            margin-bottom: 15px;
-            font-weight: 500;
+            margin-bottom: 20px;
+            font-weight: 400;
+            font-style: italic;
         }
 
         .collapsible-section {
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, margin-top 0.4s ease-out, padding-top 0.4s ease-out;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out, margin-top 0.5s ease-out, padding-top 0.5s ease-out;
             margin-top: 0;
             padding-top: 0;
             border-top: none;
@@ -372,16 +616,16 @@
         .collapsible-section.show {
             max-height: 1000px;
             opacity: 1;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--gold);
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px dashed rgba(195, 155, 80, 0.4);
         }
 
         .dinner-group {
             max-height: 150px;
             opacity: 1;
             overflow: hidden;
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.3s ease-out;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, margin-bottom 0.4s ease-out;
         }
 
         .dinner-group.hidden {
@@ -390,6 +634,50 @@
             margin-bottom: 0;
             pointer-events: none;
         }
+
+        /* FAQ Section Styling */
+        .faq-section h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--emerald-rich);
+            margin-top: 2.5rem;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .faq-section p {
+            margin-bottom: 2.5rem;
+        }
+
+        /* Success Message */
+        #success-message h3 {
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        /* Image Attribution footer style */
+        .photo-credit-footer {
+            text-align: center;
+            font-size: 0.75rem;
+            font-family: 'EB Garamond', Georgia, serif;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(195, 155, 80, 0.15);
+        }
+
+        .photo-credit-footer a {
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(96, 114, 107, 0.3);
+        }
+
+        .photo-credit-footer a:hover {
+            color: var(--burgundy-rich);
+            border-color: var(--burgundy-rich);
+        }
     </style>
 </head>
 
@@ -397,16 +685,38 @@
 
     <header>
         <div class="nav-container">
-            <a href="#" class="nav-brand">Nicola & Liza Get Married</a>
+            <a href="#" class="nav-brand">Nicola & Liza</a>
             <div class="nav-links">
                 <a href="#schedule">Schedule</a>
+                <a href="#travel">Travel</a>
                 <a href="#FAQ">FAQ</a>
                 <a href="#rsvp">RSVP</a>
+                <a href="#gallery">Gallery</a>
             </div>
         </div>
     </header>
 
+    <!-- Stunning Serena-style Hero Section with Annie Spratt backdrop -->
+    <section class="hero-banner">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-date">2026 • SEPTEMBER • 26</span>
+            <div class="hero-names">
+                <span class="name-first">Nicola</span>
+                <p class="ampersand">&</p>
+                <span class="name-second">Liza</span>
+            </div>
+            <p class="hero-location">Meadowbrook Country Club • Northville, MI</p>
+            <a href="#rsvp" class="hero-cta">RSVP Now</a>
+        </div>
+    </section>
+
     <main>
+        <!-- Decorative Divider -->
+        <div class="separator">
+            <div class="separator-dot"></div>
+        </div>
+
         <div class="post-meta">
             2026-SEP-26 • <span class="location">NORTHVILLE, MI</span>
         </div>
@@ -417,9 +727,7 @@
             Please read below for details regarding our schedule, accommodations, and to submit your RSVP.</p>
 
         <h2 id="schedule">Schedule</h2>
-        <p><strong>Ceremony:</strong> 4:30 PM at Meadowbrook Country Club.<br>
-            <strong>Cocktail Hour:</strong> 5:00 PM <br>
-            <strong>Reception:</strong> 6:00 PM immediately following the ceremony in the main ballroom.
+        <p><strong>Ceremony:</strong> 4:30 PM at Meadowbrook Country Club. Cocktail hour and reception to follow.
         </p>
 
         <h2 id="travel">Travel & Accommodations</h2>
@@ -429,7 +737,7 @@
             the venue back to the hotels starting at 10:00pm. </p>
 
         <h2 id="rsvp">RSVP</h2>
-        <p>Please let us know if you can make it by <strong>September 1st, 2026</strong>.</p>
+        <p>Please let us know if you can make it by <strong>August 10th, 2026</strong>.</p>
 
         <div class="rsvp-container">
             <form id="custom-rsvp-form"
@@ -452,7 +760,7 @@
                 <div class="form-section" id="guest1-section">
                     <h3>Guest 1</h3>
                     <div class="form-group">
-                        <label for="name">Name - Enter it exactly how it is printed on the invitation</label>
+                        <label for="name">Name</label>
                         <input type="text" name="entry.610233105" id="name" placeholder="Enter your name" required>
                     </div>
 
@@ -487,7 +795,7 @@
                 <div class="form-section collapsible-section" id="guest2-section">
                     <h3>Guest 2</h3>
                     <div class="form-group">
-                        <label for="guest2_name">Name - Enter it exactly how it is printed on the invitation</label>
+                        <label for="guest2_name">Name</label>
                         <input type="text" name="entry.1875318315" id="guest2_name" placeholder="Enter guest name">
                     </div>
 
@@ -529,22 +837,32 @@
         </div>
 
         <h2 id="FAQ"> FAQ </h2>
-        <h3> What is the dress code? </h3>
-        <p> Formal but the bride also challenges guests to try to upstage her. </p>
-        <h3> Ok what does that actually mean? </h3>
-        <p> It means please don't worry about dressing "too much"! Do you have a ball gown you've been dying to wear? A
-            sparkly suit? A bright pink suit? This is the occasion for those! Please see <a
-                href="https://people.com/upstage-the-bride-wedding-dress-code-goes-viral-exclusive-11681819"> this
-                random People article </a> for some inspiration.</a></p>
-        <h3> Are children allowed? </h3>
-        <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your understanding!
-        </p>
-        <h3> Will there be parking available? </h3>
-        <p> Yes, there will be valet parking on site </p>
-        <h3> Will the wedding be indoors or outdoors? </h3>
-        <p> The ceremony will be outside, cocktail hour and reception will be indoors. </p>
+        <div class="faq-section">
+            <h3> What is the dress code? </h3>
+            <p> Formal but the bride also challenges guests to try to upstage her. </p>
+            <h3> Ok what does that actually mean? </h3>
+            <p> It means please don't worry about dressing "too much"! Do you have a ball gown you've been dying to
+                wear? A
+                sparkly suit? A bright pink suit? This is the occasion for those! Please see <a
+                    href="https://people.com/upstage-the-bride-wedding-dress-code-goes-viral-exclusive-11681819"
+                    target="_blank" rel="noopener noreferrer"> this
+                    random People article </a> for some inspiration.</p>
+            <h3> Are children allowed? </h3>
+            <p> We love your little ones, but our wedding will be an adults-only event. We appreciate your
+                understanding!
+            </p>
+            <h3> Will there be parking available? </h3>
+            <p> Yes, there will be valet parking on site </p>
+            <h3> Will the wedding be indoors or outdoors? </h3>
+            <p> The ceremony will be outside, cocktail hour and reception will be indoors. </p>
+        </div>
 
-        <h2 id=" gallery">Gallery</h2>
+        <!-- Decorative Divider -->
+        <div class="separator">
+            <div class="separator-dot"></div>
+        </div>
+
+        <h2 id="gallery">Gallery</h2>
         <section class="photo-grid">
             <div class="photo-item tall"><img src="images/asset1.jpg"></div>
             <div class="photo-item wide"><img src="images/asset2.jpg"></div>
@@ -559,8 +877,16 @@
             <div class="photo-item"><img src="images/asset13.jpg"></div>
             <div class="photo-item"><img src="images/asset9.jpg"></div>
             <div class="photo-item wide"><img src="images/asset4.jpg"></div>
-
         </section>
+
+        <!-- Elegant Footer Photo Credit -->
+        <footer class="photo-credit-footer">
+            Header photo by <a
+                href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                target="_blank" rel="noopener noreferrer">Annie Spratt</a> on <a
+                href="https://unsplash.com/photos/purple-petaled-flowers-J4gm_1GKfAA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                target="_blank" rel="noopener noreferrer">Unsplash</a>
+        </footer>
     </main>
 
     <script type="text/javascript">
