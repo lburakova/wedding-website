@@ -719,8 +719,14 @@
 
         <div class="rsvp-container">
             <form id="custom-rsvp-form"
-                action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeKE887Q8IijwxokMl9bhZXOmuP8-hX_aDN5j36WmyxyIpb2A/formResponse"
-                method="POST" target="hidden_iframe">
+                action="https://script.google.com/macros/s/AKfycbx1oKVnrMuBnoVmki_e8qF2VdVB8YhrM-w0iZZCQoDNfPccazOBseVPfvpoojqu2XPS3w/exec"
+                method="POST">
+
+                <!-- Anti-Spam Honeypot Field (Hidden from human users) -->
+                <div class="form-group honeypot-group" style="display: none !important;">
+                    <label for="honeypot_email">Leave this field blank</label>
+                    <input type="text" name="honeypot_email" id="honeypot_email" tabindex="-1" autocomplete="off">
+                </div>
 
                 <!-- Guest Count Selection -->
                 <div class="form-group">
@@ -807,7 +813,6 @@
                 <button type="submit" class="button" style="margin-top: 20px;">SUBMIT RSVP</button>
             </form>
 
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
             <div id="success-message" style="display:none;">
                 <h3>Thanks! Your RSVP has been received.</h3>
                 <button id="reset-rsvp-btn" class="button" style="margin-top: 20px;">Submit another RSVP</button>
@@ -859,9 +864,7 @@
     </main>
 
     <script type="text/javascript">
-        var submitted = false;
         const rsvpForm = document.querySelector('#custom-rsvp-form');
-        const iframe = document.getElementById('hidden_iframe');
         const resetBtn = document.querySelector('#reset-rsvp-btn');
         const successMessage = document.querySelector('#success-message');
 
@@ -944,30 +947,45 @@
 
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent standard form redirect
+
                 const inputs = Array.from(rsvpForm.querySelectorAll('input, select, textarea'));
                 const patterns = [/<script/i, /alert\(/i, /onerror=/i, /javascript:/i];
 
                 // 1. Security Easter Egg
                 const isSuspicious = inputs.some(input => patterns.some(p => p.test(input.value)));
                 if (isSuspicious) {
-                    e.preventDefault();
                     window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'; // Rickroll
                     return;
                 }
 
-                // 2. Set flag for success message
-                submitted = true;
-            });
-        }
+                // Disable button and show loading state
+                const submitButton = rsvpForm.querySelector('.button');
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'SUBMITTING...';
+                }
 
-        // 3. Handle Success Message via Iframe Load
-        if (iframe) {
-            iframe.addEventListener('load', () => {
-                if (submitted) {
+                // 2. Submit form data to Google Apps Script Web App in the background
+                const formData = new FormData(rsvpForm);
+                fetch(rsvpForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // Required to safely post from local environment to Google Apps Script
+                })
+                .then(() => {
+                    // Successfully submitted! Transition UI to success message
                     rsvpForm.style.display = 'none';
                     successMessage.style.display = 'block';
-                    submitted = false;
-                }
+                })
+                .catch((error) => {
+                    console.error('RSVP Submission failed:', error);
+                    alert('Something went wrong. Please verify your connection and try again.');
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'SUBMIT RSVP';
+                    }
+                });
             });
         }
 
